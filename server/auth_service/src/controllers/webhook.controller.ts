@@ -83,7 +83,7 @@ const clerkWebhookHandler = async (
                 name,
                 email: primaryEmail.email_address,
                 image: data.image_url,
-                role: "customer",
+                role: null,
             });
 
             res.status(201).json({

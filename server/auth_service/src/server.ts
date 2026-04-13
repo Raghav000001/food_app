@@ -4,8 +4,14 @@ import express from "express"
 import { connectDB } from "./config/db.config.ts"
 import { serverConfig } from "./config/index.ts"
 import { clerkMiddleware } from "@clerk/express"
+import logger from "./config/logger.config.ts"
+import cors from "cors"
 const app = express()
 
+app.use(cors({
+    origin:serverConfig.CORS_ORIGIN,
+    credentials:true
+}))
 app.use(clerkMiddleware())
 app.use(attachCorelationId)
 
@@ -27,9 +33,9 @@ app.use(genericErrorHandler)
 
 
 connectDB().then(()=> {
-    app.listen(serverConfig.PORT,()=> {
-        console.log("app is running on port",serverConfig.PORT);
+    app.listen(serverConfig.PORT, () => {
+        logger.info(`[DEFIANT] Express server is now listening on port: ${serverConfig.PORT}`);
     })
 }).catch((error)=> {
-    console.log("error connecting to database",error);
+    logger.error("error connecting to database", error);
 })

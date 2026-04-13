@@ -1,7 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 import type { CreateUserDto } from "../dtos/auth.dtos.ts";
 
-export interface IUser extends CreateUserDto, Document {
+export interface IUser extends Omit<CreateUserDto, 'role'>, Document {
+    role: string | null;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -33,9 +34,9 @@ const userSchema: Schema<IUser> = new Schema(
         },
         role: {
             type: String,
-            required: true,
-            enum: ["customer", "restaurant_owner", "delivery_rider"],
-            default: "customer",
+            required: false,
+            enum: ["customer", "restaurant_owner", "delivery_rider", null],
+            default: null,
             trim: true,
         },
     },

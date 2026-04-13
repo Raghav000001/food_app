@@ -2,8 +2,12 @@ export interface CreateUserDto {
     name: string;
     email: string;
     image: string;
-    role: "customer" | "restaurant_owner" | "delivery_rider";
+    role: "customer" | "restaurant_owner" | "delivery_rider" | null;
     clerkId: string;
+}
+
+export interface UpdateRoleDto {
+    role: "customer" | "restaurant_owner" | "delivery_rider";
 }
 
 export interface UserResponseDto {
@@ -12,7 +16,7 @@ export interface UserResponseDto {
     name: string;
     email: string;
     image: string;
-    role: string;
+    role: string | null;
     createdAt: Date;
     updatedAt: Date;
 }

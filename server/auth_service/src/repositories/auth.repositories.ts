@@ -16,14 +16,25 @@ const findUserByEmail = async (email: string): Promise<IUser | null> => {
     const user = await User.findOne({ email });
     return user;
 };
+
 const findUserById = async (id: string): Promise<IUser | null> => {
     const user = await User.findById(id);
     return user;
 };
+
+const updateRole = async (id: string, role: string): Promise<IUser> => {
+    const user = await User.findOneAndUpdate({clerkId: id}, { role }, { new: true });
+    if (!user) {
+        throw new Error("User not found");
+    }
+    return user;
+}
+
 
 export const authRepository = {
     createUser,
     findUserByClerkId,
     findUserByEmail,
     findUserById,
+    updateRole,
 };

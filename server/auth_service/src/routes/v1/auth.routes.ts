@@ -2,7 +2,7 @@ import { Router } from "express";
 import { requireAuth } from "@clerk/express";
 import { authController } from "../../controllers/auth.controller.ts";
 import { validate } from "../../middlewares/zod.middleware.ts";
-import { createUserValidatorSchema } from "../../validators/validator.ts";
+import { createUserValidatorSchema, selectRoleValidatorSchema } from "../../validators/validator.ts";
 
 const authRouter = Router();
 
@@ -19,4 +19,11 @@ authRouter.get(
     authController.getMeHandler
 );
 
+
+authRouter.put(
+    "/select-role",
+    requireAuth(),
+    validate(selectRoleValidatorSchema),
+    authController.selectRoleHandler
+)
 export default authRouter;

@@ -13,4 +13,11 @@ export const createUserValidatorSchema = z.object({
     }),
 });
 
+export const selectRoleValidatorSchema = z.object({
+    role: z.enum(["customer", "restaurant_owner", "delivery_rider"], {
+        message: "role must be one of: customer, restaurant_owner, delivery_rider",
+    }),
+});
+
 export type CreateUserInput = z.infer<typeof createUserValidatorSchema>;
+export type SelectRoleInput = z.infer<typeof selectRoleValidatorSchema>;
