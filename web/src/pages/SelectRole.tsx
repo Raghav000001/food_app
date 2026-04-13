@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import { BACKEND_BASE_URL, roleConfigs } from "../store/constants"
+import { roleConfigs } from "../store/constants"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { useAuth } from "@clerk/clerk-react"
 import { useAppData } from "../context/AppContext"

@@ -4,11 +4,12 @@ import Home from "./pages/Home"
 import SelectRole from "./pages/SelectRole"
 import PublicRoutes from "./components/PublicRoutes"
 import PrivateRoutes from "./components/PrivateRoutes"
+import Layout from "./components/Layout"
 
 const App = () => {
    const router = createBrowserRouter(
         createRoutesFromChildren(
-            <Route>
+            <Route element={<Layout/>}>
                {/* public routes */}
                <Route element={<PublicRoutes/>}>
                   <Route path="/sign-up" element={<SignUpPage/>} />

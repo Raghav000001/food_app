@@ -1,5 +1,4 @@
 import { useUser } from "@clerk/clerk-react"
-import { SignOutButton } from "@clerk/clerk-react"
 
 const Home = () => {
   const {user} = useUser()
@@ -9,7 +8,6 @@ const Home = () => {
         <p>
             welcome {user?.fullName}
         </p>
-        <SignOutButton/>
     </div>
   )
 }
